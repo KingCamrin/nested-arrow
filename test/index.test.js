@@ -1,6 +1,4 @@
-const {
-    createLoginTracker
-  } = require('../index');
+const { createLoginTracker } = require('../index');
   
   describe('createLoginTracker function', () => {
     const mockUser = {
@@ -11,7 +9,7 @@ const {
       "username": "john_smith_24",
       "password": "securePassword"
     }
-    user1Login = createLoginTracker(mockUser);
+    const user1Login = createLoginTracker(mockUser);
     
     test('should return a function', () => {
       expect(typeof user1Login).toBe('function');
@@ -27,8 +25,8 @@ const {
       expect(user1Login("lastWrongPassword")).toBe('Account locked due to too many failed login attempts');
     });
 
-    user1LoginNew = createLoginTracker(mockUser);
-    user2Login = createLoginTracker(mockUser2)
+    const user1LoginNew = createLoginTracker(mockUser);
+    const user2Login = createLoginTracker(mockUser2);
     test('should allow correct login immediately', () => {
       expect(user1LoginNew("password123")).toBe('Login successful');
       expect(user2Login("securePassword")).toBe('Login successful');
@@ -37,7 +35,7 @@ const {
       "username": "Jane_Smith_4",
       "password": "password45!"
     }
-    user3Login = createLoginTracker(mockUser3)
+    const user3Login = createLoginTracker(mockUser3);
     test('should allow correct login after failed login', () => {
       expect(user3Login("wrongpassword")).toBe('Attempt 1: Login failed');
       expect(user3Login("password45!")).toBe('Login successful');
